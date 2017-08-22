@@ -1,2 +1,2 @@
 run:
-	cd src; javac Main.java && java Main
+	cd src; javac -cp src/ Main.java && java Main

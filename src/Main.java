@@ -1,8 +1,9 @@
 public class Main {
 
     public static void main(String[] args) {
+        Menu menu;
         System.out.println("Welcome to the chess game!");
-        Menu menu = Menu.build();
+        menu = Menu.build();
         menu.start();
     }
 }

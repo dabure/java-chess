@@ -1,4 +1,7 @@
 package pieces;
 
-public class Bishop extends Piece {
+public class Bishop implements Piece {
+    public String toString() {
+        return "B";
+    }
 }

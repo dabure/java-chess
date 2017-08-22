@@ -1,4 +1,9 @@
+import pieces.King;
+import pieces.Piece;
+
 import java.util.Scanner;
+import exceptions.InvalidInputException;
+import exceptions.NoPlayerPieceFoundException;
 
 public class Menu {
 
@@ -16,14 +21,37 @@ public class Menu {
     public void start() {
         while (true) {
             // Render the game menu
-            game.render();
+            System.out.print(game.toString());
 
-            // Ask for operation
+            // Choose two squares
+            chooseSquare();
+            chooseSquare();
+        }
+    }
+
+    private Piece chooseSquare() {
+        while (true) {
             System.out.print("Choose a square: ");
             Scanner scanner = new Scanner(System.in);
-            String square = scanner.next();
-            System.out.println("You choose " + square);
+            String input = scanner.next();
+
+            try {
+                SquareInput squareInput = parseSquareInput(input);
+            } catch (InvalidInputException error) {
+                continue;
+            }
         }
+    }
+
+    private SquareInput parseSquareInput(String input) throws InvalidInputException {
+        String[] splittedInput = input.trim().split("");
+
+        if (splittedInput.length != 2) {
+            throw new InvalidInputException();
+        }
+        return SquareInput.fromColumnAndRow(
+            splittedInput[0].trim(), Integer.valueOf(splittedInput[1].trim())
+        );
     }
 
 }

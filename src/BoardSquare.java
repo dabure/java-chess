@@ -3,7 +3,7 @@ import pieces.Piece;
 public class BoardSquare {
 
     private Color color;
-    private Piece piece = null;
+    private Piece piece;
 
     private BoardSquare(Color color) {
         this.color = color;
@@ -11,10 +11,6 @@ public class BoardSquare {
 
     public static BoardSquare fromColor(Color color) {
         return new BoardSquare(color);
-    }
-
-    public Boolean hasPiece() {
-        return piece != null;
     }
 
     public Piece getPiece() {
@@ -27,5 +23,14 @@ public class BoardSquare {
 
     public Color getColor() {
         return color;
+    }
+
+    public String toString() {
+        if (piece == null) {
+            return "[ ]";
+        }
+        else {
+            return "[" + piece.toString() + "]";
+        }
     }
 }

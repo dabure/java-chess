@@ -1,7 +1,5 @@
 package pieces;
 
-abstract public class Piece {
-    public Piece() {}
-
-    public Boolean canMoveToSquare() {return true;}
+public interface Piece {
+    public abstract String toString();
 }

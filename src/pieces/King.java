@@ -1,5 +1,7 @@
 package pieces;
 
-public class King extends Piece {
-
+public class King implements Piece {
+    public String toString() {
+        return "K";
+    }
 }

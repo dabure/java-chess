@@ -1,8 +1,11 @@
+import pieces.Piece;
+
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class BoardRow {
 
-    private static final Integer NUMBER_OF_COLUMNS = 8;
+    public static final Integer NUMBER_OF_COLUMNS = 8;
     private ArrayList<BoardSquare> boardSquares;
 
     private BoardRow(Integer rowNumber) {
@@ -31,10 +34,23 @@ public class BoardRow {
         }
     }
 
-    public void render() {
+    public String toString() {
+        //boardSquares.stream()
+                //.map(BoardSquare::getPiece().name)
+                //.collect(Collectors.joining(", ")); // "John, Anna, Paul"
+        //String.join("", );
+        BoardSquare square;
+        StringBuilder rowStringBuilder = new StringBuilder();
         for (Integer i=0; i<boardSquares.size(); i++) {
-            System.out.print(" ");
-            System.out.print("[ ]");
+            square = boardSquares.get(i);
+            rowStringBuilder.append(" ");
+            rowStringBuilder.append(square.toString());
         }
+        return rowStringBuilder.toString();
+    }
+
+    public void placePiece(Integer columnNumber, Piece piece) {
+        BoardSquare square = boardSquares.get(columnNumber);
+        square.setPiece(piece);
     }
 }

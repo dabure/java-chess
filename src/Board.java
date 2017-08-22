@@ -1,9 +1,11 @@
+import pieces.Piece;
+
 import java.util.ArrayList;
 
 public class Board {
 
     private ArrayList<BoardRow> rows;
-    private static final Integer NUMBER_OF_ROWS = 8;
+    public static final Integer NUMBER_OF_ROWS = 8;
     private ArrayList<String> columns;
 
     private Board() {
@@ -23,30 +25,50 @@ public class Board {
         return rows;
     }
 
-    private void renderColumns() {
-        for ()
+    private String columnsToString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("   ");
+        for (String col : getColumns()) {
+            stringBuilder.append(col);
+            stringBuilder.append("   ");
+        }
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
     }
 
-    public void render() {
-        renderColumns();
-        for (BoardRow row : rows) {
-            row.render();
-            System.out.print("\n");
+    private String rowsToString() {
+        StringBuilder rowsStringBuilder = new StringBuilder();
+        for (Integer i=0; i<rows.size(); i++) {
+            BoardRow row = rows.get(i);
+            rowsStringBuilder.append(String.valueOf(i+1));
+            rowsStringBuilder.append(row.toString());
+            rowsStringBuilder.append("\n");
         }
+        return rowsStringBuilder.toString();
+    }
+
+    public String toString() {
+        return columnsToString() + rowsToString();
     }
 
     public ArrayList<String> getColumns() {
         if (columns == null) {
-            columns = new ArrayList<>();
-            columns.add("A");
-            columns.add("B");
-            columns.add("C");
-            columns.add("D");
-            columns.add("E");
-            columns.add("F");
-            columns.add("H");
-            columns.add("I");
+            ArrayList<String> cols = new ArrayList<>();
+            cols.add("A");
+            cols.add("B");
+            cols.add("C");
+            cols.add("D");
+            cols.add("E");
+            cols.add("F");
+            cols.add("H");
+            cols.add("I");
+            this.columns = cols;
         }
         return columns;
+    }
+
+    public void placePiece(Integer rowNumber, Integer columnNumber, Piece piece) {
+        BoardRow row = rows.get(rowNumber);
+        row.placePiece(columnNumber, piece);
     }
 }

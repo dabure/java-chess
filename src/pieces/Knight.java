@@ -1,4 +1,7 @@
 package pieces;
 
-public class Knight extends Piece {
+public class Knight implements Piece {
+    public String toString() {
+        return "k";
+    }
 }
